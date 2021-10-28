@@ -1,0 +1,27 @@
+<a routerLink="/add" class="btn btn-sm btn-success mb-2">Add User</a>
+<table class="table table-stripped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">NO:</th>
+            <th scope="col">title</th>
+            <th scope="col">NAME:</th>
+            <th scope="col">EMAIL:</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let user of list; let i =index">
+            <th scope="row">{{i + 1}}</th>
+            <td><span>{{user?.title}}</span></td>
+            <td><span>{{user?.username}}</span></td>
+            <td><span>{{user?.email}}</span></td>
+          <td>  <button type="button" class="btn btn-danger " (click)="deleteUser(i)">DeleteUser</button></td>
+          <td>  <button type="button" class="btn btn-primary " (click)="updateUsers()">UpdateUser</button></td>
+        </tr>
+        <tr *ngIf="list.length === 0">
+            <td colspan="5">No Data </td>
+        </tr>
+    </tbody>
+
+</table>

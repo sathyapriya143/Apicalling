@@ -1,0 +1,75 @@
+<div class="container">
+    <form [formGroup]="userForm" (ngSubmit)="postUserDetails()">
+        <div class="row">
+            <div class="form-group col col-2">
+                <label>Title</label>
+                <select class="form-control" formControlName="title">
+                    <option value=""></option>
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Ms">Ms</option>
+                </select>
+                <div *ngIf="userForm.controls['title'].touched && userForm.controls['title'].invalid"
+                    class="alert alert-danger">
+                    Title is required:
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <label for="username">username</label>
+                <input type="text" class="form-control" formControlName="username" id="username" placeholder="name">
+                <div *ngIf="userForm.controls['username'].touched &&  userForm.controls['username'].invalid "
+                    class="alert alert-danger">
+                    Enter your Name:
+                </div>
+            </div>
+
+            <div class="form-group col-4">
+                <label for="email">Email:</label>
+                <input type="text" formControlName="email" class="form-control" id="email" placeholder="@">
+                <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid"
+                    class="invalid-feedback">
+                    email required:
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" formControlName="password" class="form-control" id="password" placeholder="password">
+            <div *ngIf="userForm.controls['password'].touched && userForm.controls['password'].invalid">
+                password required:
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="confirmpassword">Confirmpassword</label>
+            <input type="password" formControlName="confirmpassword" class="form-control" id="confirmpassword">
+            <div class="invalid-feedback" *ngIf="userForm.controls['confirmpassword'].hasError('MustMatch')">
+                password don't match</div>
+            <div *ngIf="userForm.controls['confirmpassword'].touched && userForm.controls['confirmpassword'].invalid">
+                confirmpassword required:
+            </div>
+        </div>
+        <div class=" row" formGroupName="address">
+            <div class="form-group col-4">
+                <label for="city">city</label>
+                <input type="text" formControlName="city" class="form-control" id="city" placeholder="...">
+            </div>
+            <div class=" form-group col-4">
+                <label for="state">state:</label>
+                <select class="form-control" id="state">
+                    <option *ngFor="let state of stateOptions">{{state}}</option>
+                </select>
+            </div>
+            <div class=" form-group col-4">
+                <label for="country">Country:</label>
+                <input type="text" class="form-control" id="country" placeholder=" ">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="postUserDetails()" [disabled]="!userForm.valid"> <i
+                class="fa fa-submit"></i>save</button>
+        <button class="btn btn-warning" (click)="cacnel()"> <i class="fa fa-snow"></i>cancel</button>
+
+
+    </form>
+</div>
